@@ -8,6 +8,10 @@ app = Flask(__name__)
 def home():
     return render_template('index.html')
 
+@app.route('/users-profile',methods=['POST', 'GET'])
+def info_usuario():
+    return render_template('users-profile.html')
+
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
