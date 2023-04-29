@@ -4,9 +4,9 @@ import os
 app = Flask(__name__)
 
 
-@app.route('/',methods=['POST', 'GET'])
+@app.route('/', methods=['POST','GET'])
 def home():
-    return render_template('index.html')
+    return render_template('pages-blank.html')
 
 @app.route('/users-profile',methods=['POST', 'GET'])
 def info_usuario():
