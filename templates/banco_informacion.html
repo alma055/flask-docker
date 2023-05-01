@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Banco de información{% endblock %}
+{% block content %}
+    <div class="pagetitle">
+      <h1>Banco de información</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item">Pages</li>
+          <li class="breadcrumb-item active">Información General</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+    
+    <section class="section">
+      <div class="row">
+        {% for dato in datos %}
+        <div class="col-lg-3">
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"><img src="{{ dato.imagen }}" height="50">{{ dato.siglas }}</h5>
+              <h5>{{ dato.nombre }}</h5>
+              <p>{{ dato.resumen }}</p>
+              <a href="https://www.w3schools.com/html/html_links.asp">
+                <div class="d-grid gap-2 mt-3">
+                  <button class="btn btn-primary" type="button" style="background-color: '{{ dato.color }}';">Ver más información</button>
+                </div>
+              </a>
+            </div>
+          </div>
+
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+{% endblock %}
