@@ -5,7 +5,7 @@
       <h1>Banco de información</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item"><a href="/index">Home</a></li>
           <li class="breadcrumb-item">Pages</li>
           <li class="breadcrumb-item active">Información General</li>
         </ol>
@@ -22,7 +22,7 @@
               <h5 class="card-title"><img src="{{ dato.imagen }}" height="50">{{ dato.siglas }}</h5>
               <h5>{{ dato.nombre }}</h5>
               <p>{{ dato.resumen }}</p>
-              <a href="https://www.w3schools.com/html/html_links.asp">
+              <a href="/banco-informacion/{{ dato.siglas }}">
                 <div class="d-grid gap-2 mt-3">
                   <button class="btn btn-primary" type="button" style="background-color: '{{ dato.color }}';">Ver más información</button>
                 </div>

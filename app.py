@@ -22,10 +22,11 @@ def banco_informacion_general():
     lista_partidos = abrir_archivo("db/partidos_politicos.csv")
     return render_template('banco_informacion.html',datos = random.sample(lista_partidos, len(lista_partidos)), partidos=lista_partidos)
 
-# @app.route('/banco-informacion-general/<partido>', methods=['POST','GET'])
-# def banco_informacion_general(partido):
-#     lista_partidos = abrir_archivo("db/partidos_politicos.csv")
-#     return render_template('banco_informacion.html',datos = lista_partidos)
+@app.route('/banco-informacion/<partido>', methods=['POST','GET'])
+def informacion_partido(partido):
+    lista_partidos = abrir_archivo("db/partidos_politicos.csv")
+    especifico = buscar_dato(lista_partidos, partido)
+    return render_template('partido-politico.html', partidos=lista_partidos, especifico=especifico)
 
 @app.route('/users-profile',methods=['POST', 'GET'])
 def info_usuario():

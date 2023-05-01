@@ -142,7 +142,7 @@
           </li>
           {% for partido in partidos %}
           <li>
-            <a href="/banco-informacion/{{ partido.siglas }}">
+            <a href="{{ url_for('informacion_partido', partido=partido.siglas) }}">
               <i class="bi bi-circle"></i><span>{{ partido.siglas }}</span>
             </a>
           </li>
@@ -202,7 +202,7 @@
         </a>
         <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="charts-chartjs.html">
+            <a href="/index">
               <i class="bi bi-circle"></i><span>Chart.js</span>
             </a>
           </li>
