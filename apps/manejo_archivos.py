@@ -1,5 +1,5 @@
 import csv
-
+columnas = []
 def abrir_archivo(nombre_archivo):
     registros = []
     with open(nombre_archivo, "r", encoding="utf8") as archivo_csv:
@@ -14,3 +14,10 @@ def buscar_dato(lista, dato_buscar):
         if dato['siglas'] == (dato_buscar):
             resultado = dato
     return resultado
+
+def guardar_archivo(nombre_archivo, lista):
+    with open(nombre_archivo, "w", encoding='utf8', newline='') as archivo_csv:
+        escrito = csv.DictWriter(archivo_csv, fieldnames=columnas)
+        escrito.writeheader()
+        for pelicula in lista:
+            escrito.writerow(pelicula)
