@@ -1,5 +1,15 @@
 {% extends "base-login.html" %}
 {% block content %}   
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+    {% endif %}
+  {% endwith %}
 <div class="card mb-3">
 
                 <div class="card-body">
@@ -9,7 +19,7 @@
                     <p class="text-center small">Enter your personal details to create account</p>
                   </div>
 
-                  <form class="row g-3 needs-validation" novalidate>
+                  <form class="row g-3 needs-validation" novalidate method="POST">
                     <div class="col-12">
                       <label for="yourName" class="form-label">Your Name</label>
                       <input type="text" name="name" class="form-control" id="yourName" required>
@@ -37,13 +47,6 @@
                       <div class="invalid-feedback">Please enter your password!</div>
                     </div>
 
-                    <div class="col-12">
-                      <div class="form-check">
-                        <input class="form-check-input" name="terms" type="checkbox" value="" id="acceptTerms" required>
-                        <label class="form-check-label" for="acceptTerms">I agree and accept the <a href="#">terms and conditions</a></label>
-                        <div class="invalid-feedback">You must agree before submitting.</div>
-                      </div>
-                    </div>
                     <div class="col-12">
                       <button class="btn btn-primary w-100" type="submit">Create Account</button>
                     </div>

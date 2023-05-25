@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}Resultados{% endblock %}
+{% block content %}
+<div class="pagetitle">
+  <h1>Resultados</h1>
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/index">Home</a></li>
+      <li class="breadcrumb-item active">Resultados</li>
+    </ol>
+  </nav>
+</div><!-- End Page Title -->
+
+<section class="section dashboard">
+    <div class="col-lg-12">
+        <div class="row">
+          {% if session.recomendacion|length > 0 %}
+  
+            <!-- Sales Card -->
+            {% for dato in resultado %}
+            <div class="col-xxl-4 col-md-6">
+              <div class="card info-card p{{ resultado.index(dato)+1 }}-card">
+  
+                <div class="card-body">
+                  <h5 class="card-title">{{ partidos[dato].posicion_politica }}</h5>
+  
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-{{ resultado.index(dato)+1 }}-circle-fill"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h6><img src="{{ partidos[dato].imagen }}" height="35"></h6>
+                      <span class="text-success small pt-1 fw-bold">{{ partidos[dato].siglas }}</span> <span class="text-muted small pt-2 ps-1">{{ partidos[dato].nombre }}</span>
+  
+                    </div>
+                  </div>
+                </div>
+  
+              </div>
+            </div><!-- End Sales Card -->
+            {% endfor %}
+          {% else %}
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+              Realiza tu cuestionario para ver a los partidos recomendados!
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          {% endif %}
+  
+        </div>
+      </div><!-- End Left side columns -->
+  
+</section>
+{% endblock %}

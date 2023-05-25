@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% block title %}Brujula política{% endblock %}
+{% block content %}
+<div class="pagetitle">
+    <h1>Brújula política</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/index">Home</a></li>
+        <li class="breadcrumb-item">Pages</li>
+        <li class="breadcrumb-item active">Cuestionario</li>
+      </ol>
+    </nav>
+  </div><!-- End Page Title -->
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+  <section class="section">
+    
+        <form action="{{ url_for('procesar_formulario') }}" method="POST">
+            <div class="row">
+                {% for pregunta in preguntas %}
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Pregunta {{ preguntas.index(pregunta)+1 }}</h5>
+
+                            <!-- Horizontal Form -->
+                            
+                                <div class="alert alert-info alert-dismissible fade show" role="alert">
+                                    {{ pregunta.Pregunta }}
+                                </div>
+                            <fieldset class="row mb-3">
+                                <legend class="col-form-label col-sm-2 pt-0">Answer</legend>
+                                <div class="col-sm-10">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="p{{ preguntas.index(pregunta)+1 }}-{{ loop.index }}" id="gridRadios1" value="{{ pregunta.valor}},1">
+                                        <label class="form-check-label" for="gridRadios1">
+                                        Totalmente de acuerdo
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="p{{ preguntas.index(pregunta)+1 }}-{{ loop.index }}" id="gridRadios2" value="{{ pregunta.valor }},0.5">
+                                        <label class="form-check-label" for="gridRadios2">
+                                        Parcialmente de acuerdo
+                                        </label>
+                                    </div>
+                                    <div class="form-check disabled">
+                                        <input class="form-check-input" type="radio" name="p{{ preguntas.index(pregunta)+1 }}-{{ loop.index }}" id="gridRadios3" value="{{ pregunta.valor }},0">
+                                        <label class="form-check-label" for="gridRadios3">
+                                        Neutro
+                                        </label>
+                                    </div>
+                                    <div class="form-check disabled">
+                                        <input class="form-check-input" type="radio" name="p{{ preguntas.index(pregunta)+1 }}-{{ loop.index }}" id="gridRadios4" value="{{ pregunta.valor }},-0.5">
+                                        <label class="form-check-label" for="gridRadios4">
+                                        Parcialmente en desacuerdo
+                                        </label>
+                                    </div>
+                                    <div class="form-check disabled">
+                                        <input class="form-check-input" type="radio" name="p{{ preguntas.index(pregunta)+1 }}-{{ loop.index }}" id="gridRadios5" value="{{ pregunta.valor }},-1">
+                                        <label class="form-check-label" for="gridRadios5">
+                                        Totalmente desacuerdo
+                                        </label>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="reset" class="btn btn-secondary">Reset</button>
+        </div>
+    </form>
+  </section>
+{% endblock %}
